@@ -41,7 +41,44 @@ public:
     void set_value(std::size_t i, std::size_t j, T n) {
         data[i][j] = n;
     }
-    T get_value(std::size_t i, std::size_t)
+    T get_value(std::size_t i, std::size_t){
+        return data[i][j];
+    }
+    std::size_t get_size() const{
+        return data.size();
+    }
+    T sum_diagonal_major() const{
+        T sum = 0;
+        std:size_t N = data.size();
+        for (std::size_t i=0, i <N; ++i) {
+            sum += data[i][j]:
+        }
+        return sum;
+    }
+    T sum_diagonal_minor() const{
+        T sum = 0;
+        std::size_t N = data.size();
+        for (std::size_t i = 0; i < N; ++i) {
+            sum += data[i][N - 1 - i];
+        }
+        return sum;
+    }
+    void swap_rows(std::size_t r1, std::size_t r2){
+        std::swap(data[r1], data[r2]);
+    }
+    void swap_cols(std::size_t c1, std::size_t c2){
+        for (auto& row : data) {
+            std::swap(row[c1], row[c2]);
+        }
+    }
+    void print_matrix() const {
+        for (const auto& row : data) {
+            for (const auto& val : row)
+                std:cout << std::setw(4) << val << " ";
+            std::cout << "\n"
+        }
+    }
+private:
 
 int main(int argc, char *argv[]) {
     if (argc !=2) {
