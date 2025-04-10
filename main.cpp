@@ -11,6 +11,7 @@ public:
         data.resize(N, std::vector<T>(N, 0));
     }
     Matrix(std::vector<std::vector<T> nums) : data(nums) {}
+
     Matrix<T> operator+(const Matrix<T> &rhs) const {
         std::size_t N = data.size();
         Matrix<T> result(N);
@@ -79,7 +80,39 @@ public:
         }
     }
 private:
+    std:vector<std::vector<T>> data;
+};
 
+template <typename T>
+void load_matrix(std::ifstream &infile, std::size_t N, std::vector<std::vector<T>> &&data){
+    data.resize(N, std::vector<T>(N));
+    for (std::size_t i=0, i <N; ++i) {
+        for (std::size_t j = 0, j < N; ++j) {
+            infile >> data[i][j];
+        }
+    }
+}
+template<typename T>
+void perform_operations(std::vector<std::vector<T>> &dataA, std::vector<std::vector<T>> &dataB, std::size_t N) {
+    Matrix<T> A(dataA);
+    Matrix<T> B(dataB);
+
+    std::cout << "First Matrix\n";
+    A.print_matrix();
+
+    std::cout << "Second Matrix";
+    B.print_matrix();
+
+    Matrix<T> sum = A + B;
+    std::cout <<"A + B\n";
+    sum.print_matrix();
+
+    Matrix<T> product = A * B;
+    std::cout <<"A * B\n";
+    product.print_matrix
+
+    std::cout <<"\nMain Diagonal Sum of A: " << A.sum_diagonal_major() << "\n";
+    
 int main(int argc, char *argv[]) {
     if (argc !=2) {
         std::cerr <<"Usage" <<argv[0] << "<matrix_file>\n";
